@@ -13,7 +13,7 @@ namespace Beginning.Asp.net.Core.Services
 	{
 		private readonly IHttpClientFactory _clientFactory;
 
-		public IEnumerable<User> Users { get; private set; }
+		public IEnumerable<User> Users { get; private set; } = new List<User>();
 		public bool GetUsersError { get; private set; }
 
 		public FakeApiUsersService(
@@ -29,14 +29,21 @@ namespace Beginning.Asp.net.Core.Services
 				"https://reqres.in/api/users?page=1");
 
 			var client = _clientFactory.CreateClient();
-			var response = await client.SendAsync(request);
+			//var response = await client.SendAsync(request);
+			var response = await client.GetAsync("https://reqres.in/api/users?page=1");
 
-			if (response.IsSuccessStatusCode)
-			{
-				using var responseStream = await response.Content.ReadAsStreamAsync();
-				Users = await JsonSerializer
+			 if (response.IsSuccessStatusCode)
+			 { 
+				 var r = await response.Content.ReadAsStringAsync();
+
+				 using var responseStream = await response.Content.ReadAsStreamAsync();
+				 var model= await JsonSerializer
 					.DeserializeAsync
-						<IEnumerable<User>>(responseStream);
+						<Users>(responseStream);
+
+				 Users = Models.FakeApi.Users.FromJson(r).Data;
+				 
+				 //Users = model.Data ?? new List<User>();
 			}
 			else
 			{

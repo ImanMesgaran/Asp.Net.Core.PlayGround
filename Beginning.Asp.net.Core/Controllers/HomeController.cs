@@ -17,7 +17,7 @@ namespace Beginning.Asp.net.Core.Controllers
 
 		public FakeApiUsersService _fakeApiUsersService;
 
-		public IEnumerable<User> Users { get; private set; }
+		public IEnumerable<Models.FakeApi.User> Users { get; private set; }
 
 		public HomeController(ILogger<HomeController> logger, 
 			FakeApiUsersService fakeApiUsersService)
@@ -26,10 +26,10 @@ namespace Beginning.Asp.net.Core.Controllers
 			_logger = logger;
 		}
 
-		public IActionResult Index()
+		public async Task<IActionResult> Index()
 		{
 			Users = await _fakeApiUsersService.GetUsers();
-			return View();
+			return View(Users);
 		}
 
 		//public IActionResult Privacy()

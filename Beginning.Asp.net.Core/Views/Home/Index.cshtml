@@ -1,7 +1,6 @@
-﻿@page
-@model Beginning.Asp.net.Core.Views.Home.IndexModel
+﻿@model IEnumerable<Beginning.Asp.net.Core.Models.FakeApi.User>
 @{
-	//ViewData["Title"] = "Home Page";
+	ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
@@ -9,7 +8,7 @@
 	<p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
-@foreach (var user in Model.Users)
+@foreach (var user in Model)
 {
 	<h2>
 		@user.FirstName
