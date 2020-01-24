@@ -29,8 +29,8 @@ namespace Beginning.Asp.net.Core.Services
 				"https://reqres.in/api/users?page=1");
 
 			var client = _clientFactory.CreateClient();
-			//var response = await client.SendAsync(request);
-			var response = await client.GetAsync("https://reqres.in/api/users?page=1");
+			var response = await client.SendAsync(request);
+			//var response = await client.GetAsync("https://reqres.in/api/users?page=1");
 
 			 if (response.IsSuccessStatusCode)
 			 { 
@@ -53,7 +53,5 @@ namespace Beginning.Asp.net.Core.Services
 
 			return Users;
 		}
-
-		
 	}
 }

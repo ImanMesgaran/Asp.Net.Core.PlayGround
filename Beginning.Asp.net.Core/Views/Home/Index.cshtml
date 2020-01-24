@@ -8,9 +8,16 @@
 	<p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
-@foreach (var user in Model)
-{
-	<h2>
-		@user.FirstName
-	</h2>
-}
+<div class="card-columns">
+	@foreach (var user in Model)
+	{
+		<div class="card">
+			<div class="card-img" style="background-image: url('@user.Avatar');"></div>
+			<div class="card-body">
+				<h5 class="card-title">
+					@user.FirstName
+				</h5>
+			</div>
+		</div>
+	}
+</div>

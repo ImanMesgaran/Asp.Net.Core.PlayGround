@@ -1,0 +1,26 @@
+﻿@using Beginning.Asp.net.Core.Services
+@inject FakeApiUsersService UsersService;
+
+<h3>FakeApiUsers</h3>
+
+@{
+	var users = UsersService.GetUsers().Result;
+
+	foreach (var user in users)
+	{
+		<div class="card">
+			<div class="card-img" style="background-image: url('@user.Avatar');"></div>
+			<div class="card-body">
+				<h5 class="card-title">
+					@user.FirstName
+				</h5>
+				<button @on></button>
+			</div>
+		</div>
+	}
+}
+
+@code {
+
+
+}
